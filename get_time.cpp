@@ -11,13 +11,14 @@ const char* currentTime()
 {
 	const char* timeStr = "";
 	char buffer[4096];
+	
 	time_t now = time(0);
 	tm ltm;
 	localtime_s(&ltm, &now);
-	int i = strftime(buffer, 4096,"%a %b %d %R:%S %Y", &ltm);
-	if (i != 0)
-		timeStr = reinterpret_cast<const char*>(buffer);
-	return timeStr;
+	strftime(buffer, 8192, "%a %b %d %R:%S %Y", &ltm);
+	char *nBuffer = new char[strlen(reinterpret_cast<const char*>(buffer))+1];
+	strncpy_s(nBuffer, strlen(reinterpret_cast<const char*>(buffer))+1, reinterpret_cast<const char*>(buffer), strlen(reinterpret_cast<const char*>(buffer))+1);
+	return nBuffer;
 }
 int main()
 {
