@@ -15,7 +15,7 @@ const char* currentTime()
 	time_t now = time(0);
 	tm ltm;
 	localtime_s(&ltm, &now);
-	strftime(buffer, 8192, "%a %b %d %R:%S %Y", &ltm);
+	strftime(buffer, 4096, "%a %b %d %R:%S %Y", &ltm);
 	char *nBuffer = new char[strlen(reinterpret_cast<const char*>(buffer))+1];
 	strncpy_s(nBuffer, strlen(reinterpret_cast<const char*>(buffer))+1, reinterpret_cast<const char*>(buffer), strlen(reinterpret_cast<const char*>(buffer))+1);
 	return nBuffer;
